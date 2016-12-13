@@ -104,3 +104,4 @@ pip-selfcheck.json
 
 # Custom
 *.db
+.vscode/
