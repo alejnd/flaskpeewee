@@ -1,7 +1,7 @@
 from flask import Flask, request, abort, flash, redirect, url_for
 from database import appmodel as db
 from config import config
-from flask_login import LoginManager, login_user , logout_user , current_user , login_required
+from flask_login import LoginManager, login_user, logout_user, current_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from logmanager import log
 
@@ -24,22 +24,22 @@ def load_user(id):
 def hello():
     return "Hello World!"
 
-@app.route("/register", methods =['POST'])
+@app.route("/register", methods=['POST'])
 def register():
     if set((request.form.keys())) != set(['username', 'password', 'email']): return abort(400)
     try:
-        user = db.Users(username = request.form['username'], 
-                        password = generate_password_hash(request.form['password']), 
-                        email    = request.form['email'],) 
+        user = db.Users(username = request.form['username'],
+                        password = generate_password_hash(request.form['password']),
+                        email    = request.form['email'],)
         user.save()
-    except: abort(400)    
+    except: abort(400)
     return "ok" # this easily can by json or redirect, but now is rammus
 
-@app.route("/login", methods =['POST'])
+@app.route("/login", methods=['POST'])
 def login():
     username = request.form['username']
     password = request.form['password']
-    try: user = db.Users.select().where(db.Users.username==username).get()
+    try: user = db.Users.select().where(db.Users.username == username).get()
     except:
         log.warning('username does not exist')
         logout_user()
