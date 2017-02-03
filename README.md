@@ -26,3 +26,12 @@ Si instalamos mas paquetes con pip y queremos guardar el estado actual de las de
 Y por último para salir del virtual env ejecutamos: `deactivate`
 
 **Eso es todo!**
+
+## WorkLog
+---
+###### Fri Feb 3 16:00:42 CET 2017
+No estoy satisfecho con la organización del código y los imports, es posible que cree una rama para ello.
+Tampoco están bien organizados los test (lo que es normal ya que solo estaba probando), creo que es lo
+primero que cambiaré.
+
+---
