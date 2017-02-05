@@ -41,7 +41,7 @@ def login():
     password = request.form['password']
     try: user = db.Users.select().where(db.Users.username == username).get()
     except:
-        log.warning('username does not exist')
+        log.warning('username '+str(username)+' does not exist')
         logout_user()
         abort(401)
     login_user(user)
