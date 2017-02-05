@@ -35,3 +35,8 @@ Tampoco están bien organizados los test (lo que es normal ya que solo estaba pr
 primero que cambiaré.
 
 ---
+###### Sun Feb 5 20:29:15 CET 2017
+Ya estan mejor organizados los test, pero el tema de tener los context.py para lidiar con los imports es
+poco elegante, tengo que ver como ceñirme a los estandares de organización de proyectos de flask.
+---
+
