@@ -8,7 +8,7 @@ import server
 import time
 from peewee import *
 
-necessary_tables =set(['abilities', 'attendants', 'comments', 'events', 'imggallery', 'users', 'usersabilities'])
+necessary_tables =set([ 'users'])
 
 class DatabaseTests(unittest.TestCase):
 
@@ -30,6 +30,9 @@ class EndpointsTest(unittest.TestCase):
         server.db.create_tables()
         self.app = server.app.test_client()
 
+    def tearDown(self):
+        server.db.delete_database()
+
     def test_home_up(self):
         rv = self.app.get('/')
         assert rv.status_code == 200
@@ -39,9 +42,11 @@ class EndpointsTest(unittest.TestCase):
         assert rv.status_code == 200
         
         #print (rv.data)
-    def test_valid_login(self):    
+    def test_valid_login(self):
+        self.test_register_login()    
         rv = self.app.post('/login', data=dict(username='dummy', password='passpass'))
-    
+        assert rv.status_code == 200
+
     def test_unauthorized_login(self):
         rv = self.app.post('/login', data=dict(username='badguy', password='badpass'))
         assert rv.status_code == 401

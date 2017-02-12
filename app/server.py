@@ -33,7 +33,7 @@ def register():
                         email    = request.form['email'],)
         user.save()
     except: abort(400)
-    return "ok" # this easily can by json or redirect, but now is rammus
+    return "ok" # this easily can by json or redirect, but now is in rammus mode
 
 @app.route("/login", methods=['POST'])
 def login():
@@ -55,6 +55,10 @@ def login():
     logout_user()
     abort(401)
 
+@app.route("/logout", methods=['GET'])
+def logout():
+    logout_user()
+    return redirect('/')
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host=config.HOST)
